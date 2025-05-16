@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brainrot Quiz</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Space Grotesk', 'sans-serif'],
+          },
+          colors: {
+            primary: '#6366F1',
+            secondary: '#F472B6',
+            accent: '#8B5CF6',
+            dark: '#1F2937',
+          },
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 min-h-screen text-white font-sans flex flex-col">
+  <div class="noise-overlay"></div>
+  
+  <header class="container mx-auto px-4 py-3">
+    <div class="flex justify-between items-center">
+      <div class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">BrainQuiz</div>
+      <nav>
+        <ul class="flex space-x-6">
+          <li><a href="#" class="hover:text-secondary transition-colors">Home</a></li>
+          <li><a href="#" class="hover:text-secondary transition-colors">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-2 flex-grow flex items-center justify-center">
+    <div class="max-w-2xl w-full mx-auto">
+      <!-- Стартовый экран -->
+      <div id="start-screen" class="relative">
+        <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-2xl blur opacity-30"></div>
+        <div class="relative bg-dark/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-white/10 text-center">
+          <h2 class="text-3xl font-bold mb-6">Добро пожаловать в BrainQuiz!</h2>
+          <p class="text-lg mb-8">Проверьте свои знания в нашем увлекательном тесте. Вам предстоит ответить на 5 случайных вопросов.</p>
+          <button id="start-btn" class="px-8 py-3 rounded-lg bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity text-lg font-medium">Начать тест</button>
+        </div>
+      </div>
+
+      <!-- Контейнер с вопросами -->
+      <div id="quiz-container" class="relative hidden">
+        <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-2xl blur opacity-30"></div>
+        <div class="relative bg-dark/80 backdrop-blur-sm p-5 rounded-2xl shadow-xl border border-white/10">
+          <div class="flex justify-between items-center mb-3">
+            <h2 class="text-lg font-bold">Quiz Challenge</h2>
+            <div id="progress" class="text-sm text-gray-400">Вопрос <span id="current-question">1</span> из <span id="total-questions">5</span></div>
+          </div>
+          
+          <div id="question-container" class="mb-4">
+            <h3 id="question-text" class="text-base mb-3"></h3>
+            <div id="image-container" class="mb-3 rounded-lg overflow-hidden hidden flex justify-center">
+              <img id="question-image" class="object-contain max-h-32" src="" alt="Question image">
+            </div>
+            <div id="options-container" class="grid grid-cols-1 gap-2"></div>
+          </div>
+          
+          <div class="flex justify-between">
+            <button id="prev-btn" class="px-4 py-1.5 text-sm rounded-lg bg-dark border border-white/20 hover:bg-white/10 transition-colors hidden">Назад</button>
+            <button id="next-btn" class="px-4 py-1.5 text-sm rounded-lg bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity">Далее</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Контейнер с результатами -->
+      <div id="result-container" class="mt-8 p-6 bg-dark/80 backdrop-blur-sm rounded-2xl border border-white/10 hidden">
+        <h2 class="text-2xl font-bold mb-4">Ваши результаты</h2>
+        <p class="text-xl">Вы ответили правильно на <span id="score">0</span> из <span id="max-score">5</span> вопросов!</p>
+        <button id="restart-btn" class="mt-6 px-6 py-2 rounded-lg bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity">Пройти еще раз</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="container mx-auto px-4 py-2">
+    <div class="text-center text-gray-400 text-xs">
+      <p>© 2025 BrainQuiz. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="answers.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>
